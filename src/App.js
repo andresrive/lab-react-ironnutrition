@@ -9,12 +9,15 @@ function App() {
 
   const [foods, setFoods] = useState(foodsJSON)
 
+  const [copyFoods, setCopyFoods] = useState(foodsJSON)
+
   const addFood = (food) => {
     setFoods([food, ...foods])
   }
 
   const searchFood = (search) => {
-    setFoods(foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase())))
+    if (!search) { setFoods(copyFoods) }
+    else setFoods(foods.filter(food => food.name.toLowerCase().includes(search.toLowerCase())))
   }
 
   const deleteHandler = (name) => {
